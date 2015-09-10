@@ -39,38 +39,8 @@ var UserStoryList = React.createClass({
 
 });
 
+var userStories = AppData.getUserStories();
 
-var userStories = [
-    {
-        id: 1,
-        title: 'Integrate local storage',
-        estimation: { pdf: 2, dev: 4},
-        priority: 2
-    },
-    {
-        id: 2,
-        title: 'Support epics',
-        estimation: { pdf: 1, dev: 2},
-        priority: 4
-    },
-    {
-        id: 3,
-        title: 'Static view of user story list',
-        estimation: { pdf: 1, dev: 1},
-        priority: 1
-    },
-    {
-        id: 4,
-        title: 'Support sprints',
-        estimation: { pdf: 1, dev: 2},
-        priority: 2
-    },
-    {
-        id: 5,
-        title: 'Add bootstrap',
-        estimation: { pdf: 1, dev: 4},
-        priority: 5
-    }
-];
+console.log('UserStories:', JSON.stringify(userStories, null, 2));
 
 React.render(<UserStoryList userStories={userStories} />, document.getElementById('view'));
