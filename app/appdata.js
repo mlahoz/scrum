@@ -46,7 +46,7 @@ var AppData = (function() {
 	    _write();
 	}
 
-	console.log("AppData", JSON.stringify(_appdata, null, 2));
+//	console.log("AppData", JSON.stringify(_appdata, null, 2));
     }
 
     var _write = function() {
@@ -58,13 +58,24 @@ var AppData = (function() {
 	_write();
     }
 
+    var _getUserStories = function() {
+	_read();
+	return _appdata.userStories;
+    }
+
+    var _addUserStory = function(userStory) {
+	_read();
+
+	_appdata.userStories.push(userStory);
+
+	_write();
+    }
+
     return {
 	save: _write,
 	reset: _reset,
-	getUserStories: function() {
-	    _read();
-	    return _appdata.userStories;
-	}
+	getUserStories: _getUserStories,
+	addUserStory: _addUserStory
 
     };
 

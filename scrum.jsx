@@ -39,8 +39,77 @@ var UserStoryList = React.createClass({
 
 });
 
-var userStories = AppData.getUserStories();
+var UserStoryForm = React.createClass({
+    propTypes: {
+        addUserStory: React.PropTypes.func
+    },
+    getInitialState: function() {
+	return {
+	    title: ''
+	};
+    },
+    handleTitleChange: function(event) {
+//	this.state.title = event.target.value;
+//	this.setState(this.state);
+	this.setState({title: event.target.value});
 
-console.log('UserStories:', JSON.stringify(userStories, null, 2));
+    },
+    handleOnClick: function(event) {
+	this.state.title
 
-React.render(<UserStoryList userStories={userStories} />, document.getElementById('view'));
+	var userStory = { id: 5,
+			  title: this.state.title,
+			  estimation: {pdf: 2, dev: 2},
+			  priority: 10
+			};
+
+	console.log('on click', JSON.stringify(userStory,null,2))
+
+	this.props.addUserStory(userStory);
+    },
+    render: function() {
+	var title = this.state.title;
+        return <div>
+	    <form>
+	        <input type="text" name="title" value={title} onChange={this.handleTitleChange}/>
+	        <input type="button" value="Add" onClick={this.handleOnClick}/>
+	    </form>
+        </div>;
+    }
+
+});
+
+var UserStoryView = React.createClass({
+    propTypes: {
+        userStories: React.PropTypes.arrayOf(React.PropTypes.object)
+    },
+
+    update: function() {
+	var userStories = AppData.getUserStories();
+	this.setState({userStories: userStories});
+    },
+
+    addUserStory: function(userStory) {
+	console.log('add user story', JSON.stringify(userStory,null,2))
+	AppData.addUserStory(userStory);
+	this.update();
+    },
+
+    getInitialState: function() {
+	return {userStories: []};
+    },
+
+    componentDidMount: function() {
+	this.update();
+    },
+
+    render: function() {
+        return <div>
+            <UserStoryList userStories={this.state.userStories} key='us-list' />
+            <UserStoryForm addUserStory={this.addUserStory} key='us-form' />
+        </div>;
+    }
+
+});
+
+React.render(<UserStoryView />, document.getElementById('view'));
