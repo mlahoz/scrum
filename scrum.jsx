@@ -54,7 +54,7 @@ var UserStoryForm = React.createClass({
     handleOnClick: function(event) {
         this.state.title
 
-        var userStory = { id: 6,
+        var userStory = {
             title: this.state.title,
             estimation: {pdf: 2, dev: 2},
             priority: 10
