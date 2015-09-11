@@ -44,34 +44,30 @@ var UserStoryForm = React.createClass({
         addUserStory: React.PropTypes.func
     },
     getInitialState: function() {
-	return {
-	    title: ''
-	};
+        return {
+            title: ''
+        };
     },
     handleTitleChange: function(event) {
-//	this.state.title = event.target.value;
-//	this.setState(this.state);
-	this.setState({title: event.target.value});
-
+        this.setState({title: event.target.value});
     },
     handleOnClick: function(event) {
-	this.state.title
+        this.state.title
 
-	var userStory = { id: 5,
-			  title: this.state.title,
-			  estimation: {pdf: 2, dev: 2},
-			  priority: 10
-			};
+        var userStory = { id: 6,
+            title: this.state.title,
+            estimation: {pdf: 2, dev: 2},
+            priority: 10
+        };
 
-	console.log('on click', JSON.stringify(userStory,null,2))
-
-	this.props.addUserStory(userStory);
+        this.props.addUserStory(userStory);
     },
     render: function() {
-	var title = this.state.title;
+        var title = this.state.title;
         return <div>
 	    <form>
-	        <input type="text" name="title" value={title} onChange={this.handleTitleChange}/>
+	        <input type="text" name="title" value={title}
+                onChange={this.handleTitleChange}/>
 	        <input type="button" value="Add" onClick={this.handleOnClick}/>
 	    </form>
         </div>;
@@ -85,22 +81,21 @@ var UserStoryView = React.createClass({
     },
 
     update: function() {
-	var userStories = AppData.getUserStories();
-	this.setState({userStories: userStories});
+       var userStories = AppData.getUserStories();
+       this.setState({userStories: userStories});
     },
 
     addUserStory: function(userStory) {
-	console.log('add user story', JSON.stringify(userStory,null,2))
-	AppData.addUserStory(userStory);
-	this.update();
+        AppData.addUserStory(userStory);
+        this.update();
     },
 
     getInitialState: function() {
-	return {userStories: []};
+        return {userStories: []};
     },
 
     componentDidMount: function() {
-	this.update();
+        this.update();
     },
 
     render: function() {
