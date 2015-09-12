@@ -23,3 +23,11 @@ li span.us-estimation {
 li span.us-delete {
     float: right;
 }
+
+input.invalid {
+    background-color: #F5D0D0;
+}
+
+input.valid {
+    background-color: #D6F5D0;
+}

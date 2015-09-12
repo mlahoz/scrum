@@ -64,7 +64,7 @@ var AppData = (function() {
     var _addNewUserStory = function(userStory) {
         _appdata.lastUserStoryId += 1;
         userStory.id = _appdata.lastUserStoryId;
-        userStory.priority = userStory.priority || _appdata.userStories.length;
+        userStory.priority = userStory.priority || _appdata.userStories.length + 1;
         _appdata.userStories.push(userStory);
     };
 
