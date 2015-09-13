@@ -1,3 +1,5 @@
+var React = require('react');
+var $ = require('jquery');
 
 var computeTotalEstimation = function(estimation) {
     return Object.keys(estimation).reduce(function(acc, next) {

@@ -12,6 +12,12 @@ React:
 
 ## Build
 
-Compile JSX files to JS:
+For development, with browserify:
 
-    jsx -x jsx . .
+    browserify -t reactify scrum.jsx -o scrum.js
+
+For production: browserify with reactify, and uglify:
+
+    export NODE_ENV=production
+    browserify -t reactify scrum.jsx -o scrum.js
+    uglifyjs scrum.js -nc -mt --unsafe -o scrum.js
