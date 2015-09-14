@@ -1,5 +1,6 @@
 var React = require('react');
 var $ = require('jquery');
+var AppData = require('./lib/appdata');
 
 var computeTotalEstimation = function(estimation) {
     return Object.keys(estimation).reduce(function(acc, next) {
