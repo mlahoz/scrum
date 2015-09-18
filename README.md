@@ -6,18 +6,14 @@ Little project to learn something of Flux-React. WORK IN PROGRESS.
 
 ## Requirements
 
-React:
+    # install all dependencies
+    npm install
 
-    npm install -g react-tools
+    # start budo server
+    npm start
 
-## Build
+    # build with browserify
+    npm run-script build
 
-For development, with browserify:
-
-    browserify -t reactify scrum.jsx -o scrum.js
-
-For production: browserify with reactify, and uglify:
-
-    export NODE_ENV=production
-    browserify -t reactify scrum.jsx -o scrum.js
-    uglifyjs scrum.js -nc -mt --unsafe -o scrum.js
+    # build with prod parameters
+    npm run-script release

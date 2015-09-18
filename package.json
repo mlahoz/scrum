@@ -11,10 +11,18 @@
     "jquery": "^2.1.4"
   },
   "devDependencies": {
+    "browserify": "^11.1.0",
+    "budo": "^4.2.1",
+    "faucet": "0.0.1",
+    "garnish": "^3.2.0",
     "reactify": "^1.1.1",
+    "tap-nyan": "0.0.2",
     "tape": "^4.2.0"
   },
   "scripts": {
+    "start": "budo scrum.jsx:scrum.js -t reactify | garnish",
+    "build": "browserify -t reactify scrum.jsx -o scrum.js",
+    "release": "export NODE_ENV=production;browserify -t reactify scrum.jsx | uglifyjs -nc -mt --unsafe 2> /dev/null > scrum.js",
     "test": "tape test/*.js | faucet",
     "nyan": "tape test/*.js | tnyan"
   },
