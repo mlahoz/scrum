@@ -25,10 +25,13 @@
   "keywords": [
     "scrum"
   ],
-  "author": "Miguel Lahoz",
+  "author": "Miguel Lahoz <miguel.lahoz@gmail.com>",
   "license": "GPL-2.0",
   "bugs": {
     "url": "https://github.com/mlahoz/scrum/issues"
   },
-  "homepage": "https://github.com/mlahoz/scrum#readme"
+  "homepage": "https://github.com/mlahoz/scrum#readme",
+  "browser": {
+    "leveldown": "level-js"
+  }
 }
