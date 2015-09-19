@@ -4,7 +4,7 @@ Tool to manage the backlog and plan sprints.
 
 Little project to learn something of Flux-React. WORK IN PROGRESS.
 
-## Requirements
+## Usage
 
     # install all dependencies
     npm install
@@ -17,3 +17,12 @@ Little project to learn something of Flux-React. WORK IN PROGRESS.
 
     # build with prod parameters
     npm run-script release
+
+## TODO
+
+ * Data layer: use dexie.js (IndexedDB API) and promises
+ * Unit test: investigate more options (tape, casper, mocha, jasmine, jest)
+ * UI: add bootstrap
+ * Architecture: Flux
+ * Functionality: priority sorting, sprints, epics, etc...
+ * ES6: babel? react harmony?

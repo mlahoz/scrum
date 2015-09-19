@@ -1,6 +1,6 @@
 var React = require('react');
 var $ = require('jquery');
-var AppData = require('./lib/appdata');
+var AppData = require('./lib/data');
 
 var computeTotalEstimation = function(estimation) {
     return Object.keys(estimation).reduce(function(acc, next) {
@@ -168,18 +168,24 @@ var UserStoryView = React.createClass({
     },
 
     update: function() {
-       var userStories = AppData.getUserStories();
-       this.setState({userStories: userStories});
+        var self = this;
+        AppData.getUserStories(function(userStories) {
+            self.setState({userStories: userStories});
+        });
     },
 
     addUserStory: function(userStory) {
-        AppData.addUserStory(userStory);
-        this.update();
+        var self = this;
+        AppData.addUserStory(userStory, function() {
+            self.update();
+        });
     },
 
     deleteUserStory: function(id) {
-        AppData.deleteUserStory(id);
-        this.update();
+        var self = this;
+        AppData.deleteUserStory(id, function() {
+            self.update();
+        });
     },
 
     getInitialState: function() {
