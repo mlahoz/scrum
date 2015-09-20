@@ -1,3 +1,5 @@
 .module-cache
 node_modules
+.scrumdb
+scrum.js
 *~

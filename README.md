@@ -25,4 +25,3 @@ Little project to learn something of Flux-React. WORK IN PROGRESS.
  * UI: add bootstrap
  * Architecture: Flux
  * Functionality: priority sorting, sprints, epics, etc...
- * ES6: babel? react harmony?

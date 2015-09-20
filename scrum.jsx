@@ -1,17 +1,19 @@
-var React = require('react');
-var $ = require('jquery');
-var AppData = require('./lib/data');
+"use strict";
 
-var computeTotalEstimation = function(estimation) {
+let React = require('react');
+let $ = require('jquery');
+let AppData = require('./lib/data');
+
+let computeTotalEstimation = function(estimation) {
     return Object.keys(estimation).reduce(function(acc, next) {
         return acc + estimation[next];
     }, 0).toFixed(2);
 }
 
-var UserStoryRow = React.createClass({
+let UserStoryRow = React.createClass({
     propTypes: {
         userStory: React.PropTypes.object,
-        deleteUserStory: React.PropTypes.func
+        devareUserStory: React.PropTypes.func
     },
     onDelete: function(event) {
         this.props.deleteUserStory(this.props.userStory.id);
@@ -25,14 +27,14 @@ var UserStoryRow = React.createClass({
     }
 });
 
-var UserStoryList = React.createClass({
+let UserStoryList = React.createClass({
     propTypes: {
         userStories: React.PropTypes.arrayOf(React.PropTypes.object),
         deleteUserStory: React.PropTypes.func
     },
 
     render: function() {
-        var deleteUserStory = this.props.deleteUserStory;
+        let deleteUserStory = this.props.deleteUserStory;
         return <div>
             <h2>User Story List</h2>
             <ul className="userStories">
@@ -50,7 +52,7 @@ var UserStoryList = React.createClass({
 
 });
 
-var UserStoryForm = React.createClass({
+let UserStoryForm = React.createClass({
     propTypes: {
         addUserStory: React.PropTypes.func
     },
@@ -62,7 +64,7 @@ var UserStoryForm = React.createClass({
         };
     },
     validateTitle: function() {
-        var form = $("#us-form-title");
+        let form = $("#us-form-title");
         if (this.state.title !== '') {
             form.removeClass("invalid").addClass("valid");
             return true;
@@ -102,19 +104,19 @@ var UserStoryForm = React.createClass({
         }
     },
     onTitleChange: function(event) {
-        var state = this.state;
+        let state = this.state;
         state.title = event.target.value;
         this.setState(state);
         this.validate();
     },
     onPDFEstimationChange: function(event) {
-        var state = this.state;
+        let state = this.state;
         state.pdf = event.target.value;
         this.setState(state);
         this.validate();
     },
     onDEVEstimationChange: function(event) {
-        var state = this.state;
+        let state = this.state;
         state.dev = event.target.value;
         this.setState(state);
         this.validate();
@@ -122,7 +124,7 @@ var UserStoryForm = React.createClass({
     onAdd: function(event) {
         if (this.validate())
         {
-            var userStory = {
+            let userStory = {
                 title: this.state.title,
                 estimation: {
                     pdf: isNaN(this.state.pdf)?0:parseFloat(this.state.pdf),
@@ -162,30 +164,21 @@ var UserStoryForm = React.createClass({
 
 });
 
-var UserStoryView = React.createClass({
+let UserStoryView = React.createClass({
     propTypes: {
         userStories: React.PropTypes.arrayOf(React.PropTypes.object)
     },
 
     update: function() {
-        var self = this;
-        AppData.getUserStories(function(userStories) {
-            self.setState({userStories: userStories});
-        });
+        AppData.getUserStories((userStories) => this.setState({userStories: userStories}));
     },
 
     addUserStory: function(userStory) {
-        var self = this;
-        AppData.addUserStory(userStory, function() {
-            self.update();
-        });
+        AppData.addUserStory(userStory, () => this.update());
     },
 
     deleteUserStory: function(id) {
-        var self = this;
-        AppData.deleteUserStory(id, function() {
-            self.update();
-        });
+        AppData.deleteUserStory(id, () => this.update());
     },
 
     getInitialState: function() {
