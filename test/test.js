@@ -42,6 +42,4 @@ test('LevelDB', function (t) {
         });
 
     });
-
-    //console.log('after add',JSON.stringify(value, null, 2));
 });
